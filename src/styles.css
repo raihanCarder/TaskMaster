@@ -7,20 +7,155 @@
     box-sizing: border-box;
 }
 
+:root {
+    --dashboard-bg: white;
+    --above-content-bg: teal;
+    --content-bg: lightblue;
+    --dashboard-hover-btn-clr: #d3d3d3;
+}
+
 body {
-    background-color: red;
-    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     /* TEXT */
     /* font-family: 'Baloo 2', cursive; */
     /* Titles */
+    width: 100%;
+    height: 100vh;
 
-    font-weight: bold;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "dashboard above-content" "dashboard main";
+}
+
+
+
+/* Dashboard */
+
+#dashboard {
+    grid-area: dashboard;
+    background-color: var(--dashboard-bg);
+
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto 1fr auto;
+    grid-template-areas: "space" "dash-top" "lists" "add-list";
+
+    overflow: hidden;
+    gap: 1px;
+
+    border-right: 1px solid black;
+}
+
+#space {
+    grid-area: space;
+}
+
+#dashboard-top {
+    grid-area: dash-top;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 0px 1.5rem;
+    font-size: 1.3rem;
+}
+
+#flag-circle-clr {
+    background-color: orange;
+}
+
+#today-circle-clr {
+    background-color: lightcoral;
+}
+
+#all-circle-clr {
+    background-color: lightblue;
+}
+
+
+
+.nav-btn,
+#add-list-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    font-size: 1.3rem;
+    gap: 0.5rem;
+    padding: 5px;
+    border-radius: 10px;
+
+    border: none;
+    background-color: inherit;
+}
+
+.nav-btn:hover,
+#add-list-btn:hover {
+    background-color: var(--dashboard-hover-btn-clr);
+    cursor: pointer;
+}
+
+.icon-main {
+    height: 100%;
+    width: 1.3rem;
+}
+
+.dashboard-lists {
+    grid-area: lists;
+    font-family: 'Baloo 2', cursive;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+}
+
+#dashboard-bottom {
+    grid-area: add-list;
+    height: auto;
+    width: 100%;
+    padding: 0px 1.5rem;
+    padding-bottom: 5px;
+}
+
+
+#add-list-btn-img {
+    height: 1.3rem;
+    width: 1.3rem;
+}
+
+#above-content {
+    grid-area: above-content;
+    background-color: var(--above-content-bg);
+
+    width: 100%;
+    height: 100%;
+}
+
+#content {
+    grid-area: main;
+    background-color: var(--content-bg);
 }
 
 .circle-dashboard-icon-outline {
-    background-color: yellow;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     padding: 5px;
     border-radius: 50%;
 

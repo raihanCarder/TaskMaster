@@ -8,11 +8,40 @@
 </head>
 
 <body>
-    <div id="dashboard"></div>
-    <div id="upper-dashboard">
-        <div class="circle-dashboard-icon-outline">
-            <div class="icon"></div>
+    <div id="dashboard">
+        <div id="space"></div>
+        <div id="dashboard-top">
+            <button class="nav-btn">
+                <div class="circle-dashboard-icon-outline" id="all-circle-clr">
+                    <img src="<%= require('./images/inbox.svg') %>" alt="Inbox" class="icon-main" />
+                </div>
+                <p>All</p>
+            </button>
+            <button class="nav-btn">
+                <div class="circle-dashboard-icon-outline" id="today-circle-clr">
+                    <img src="<%= require('./images/calendar-today.svg') %>" alt="Today" class="icon-main">
+                </div>
+
+                <p>Today</p>
+            </button>
+            <button class="nav-btn">
+                <div class="circle-dashboard-icon-outline" id="flag-circle-clr">
+                    <img src="<%= require('./images/flag.svg') %>" alt="Important" class="icon-main">
+                </div>
+                <p>Important</p>
+            </button>
         </div>
+        <div class="dashboard-lists">
+            <p>My Lists:</p>
+        </div>
+        <div id="dashboard-bottom">
+            <button id="add-list-btn">
+                <img src="<%= require('./images/plus-circle.svg') %>" alt="Add List" id="add-list-btn-img">
+                <p>Add List</p>
+            </button>
+        </div>
+    </div>
+    <div id="above-content">
     </div>
     <div id="content"></div>
 </body>
