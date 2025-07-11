@@ -1,3 +1,3 @@
 export default function getItemInput() {
-    const body = document.getElementById("body");
+    const modal = document.getElementById("body");
 }

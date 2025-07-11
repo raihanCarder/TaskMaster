@@ -4,11 +4,12 @@ import flagIcon from "./images/flag.svg";
 import circlePlusIcon from "./images/plus-circle.svg"
 import plusIcon from "./images/plus.svg";
 
-export default function initPage() {
+export default function initPage(modal) {
     _initDashTop();
     _initDashListUI();
     _initDashBottom();
     _initAboveContent();
+
 }
 
 function _initDashTop() {

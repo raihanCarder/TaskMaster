@@ -33,15 +33,17 @@
         </div> -->
     </div>
 
-    <dialog id="add-item-modal" closedby="any">
-        <form action="" method="post" id="add-item-form">
-            <h1>Add Task</h1>
-            <label for="item-name-input">Name:
-                <input type="text" id="item-name-input">
+    <dialog id="add-list-modal">
+        <form action="" method="post" id="add-list-form">
+            <label for="list-name-input">
+                <p id="add-list-title">List Name:</p>
+                <input type="text" id="list-name-input" required>
             </label>
-            <label for="item-name-input">Name:
-                <input type="text" id="item-name-input">
-            </label>
+            <div id="add-list-btns">
+                <button type="submit">Add</button>
+                <button type="button">Close</button>
+            </div>
+
         </form>
     </dialog>
 
