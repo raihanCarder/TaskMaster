@@ -1,2 +1,3 @@
-export default function input() {
+export default function getItemInput() {
+    const body = document.getElementById("body");
 }

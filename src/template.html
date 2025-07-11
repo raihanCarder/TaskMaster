@@ -11,39 +11,40 @@
     <div id="dashboard">
         <div id="space"></div>
         <div id="dashboard-top">
-            <button class="nav-btn">
-                <div class="circle-dashboard-icon-outline" id="all-circle-clr">
-                    <img src="<%= require('./images/inbox.svg') %>" alt="Inbox" class="icon-main" />
-                </div>
-                <p>All</p>
-            </button>
-            <button class="nav-btn">
-                <div class="circle-dashboard-icon-outline" id="today-circle-clr">
-                    <img src="<%= require('./images/calendar-today.svg') %>" alt="Today" class="icon-main">
-                </div>
-
-                <p>Today</p>
-            </button>
-            <button class="nav-btn">
-                <div class="circle-dashboard-icon-outline" id="flag-circle-clr">
-                    <img src="<%= require('./images/flag.svg') %>" alt="Important" class="icon-main">
-                </div>
-                <p>Important</p>
-            </button>
         </div>
-        <div class="dashboard-lists">
-            <p>My Lists:</p>
+        <div class="dashboard-lists" id="dashboard-lists">
         </div>
         <div id="dashboard-bottom">
-            <button id="add-list-btn">
-                <img src="<%= require('./images/plus-circle.svg') %>" alt="Add List" id="add-list-btn-img">
-                <p>Add List</p>
-            </button>
         </div>
     </div>
     <div id="above-content">
     </div>
-    <div id="content"></div>
+    <div id="content">
+        <!-- <div class="content-title-div">
+            <h3 id="topic-title" class="title-styling">Title</h3>
+            <div class="circle-content-icon-outline">
+                <p class="number-items-p">0</p>
+            </div>
+        </div>
+        <div class="item">
+            <div></div>
+            <p class="item-name">Do Dishes</p>
+            <p class="item-date">2024-12-04</p>
+        </div> -->
+    </div>
+
+    <dialog id="add-item-modal" closedby="any">
+        <form action="" method="post" id="add-item-form">
+            <h1>Add Task</h1>
+            <label for="item-name-input">Name:
+                <input type="text" id="item-name-input">
+            </label>
+            <label for="item-name-input">Name:
+                <input type="text" id="item-name-input">
+            </label>
+        </form>
+    </dialog>
+
 </body>
 
 </html>

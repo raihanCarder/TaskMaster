@@ -1,5 +1,17 @@
-export default function addList(name) {
+import getRandomColor from "./randomColor";
+
+export default function addList(inputName, inputColor = getRandomColor()) {
     const items = [];
+    const name = inputName;
+    const color = inputColor;
+
+    function getName() {
+        return name;
+    }
+
+    function getColor() {
+        return color;
+    }
 
     function addToList(item) {
         items.push(item);
@@ -20,5 +32,5 @@ export default function addList(name) {
         return items.length;
     }
 
-    return { name, addToList, removeFromList, listLength }
+    return { getName, getColor, addToList, removeFromList, listLength }
 }
