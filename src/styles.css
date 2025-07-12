@@ -235,11 +235,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: purple;
 }
 
 .number-items-p {
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
 /* CONTENT ITEMS SECTION */

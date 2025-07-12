@@ -33,9 +33,9 @@ export default function addList(inputName, inputColor = getRandomColor()) {
         }
     }
 
-    function listLength() {
+    function getLength() {
         return items.length;
     }
 
-    return { getName, getColor, addToList, removeFromList, listLength, getId }
+    return { getName, getColor, addToList, removeFromList, getLength, getId }
 }
