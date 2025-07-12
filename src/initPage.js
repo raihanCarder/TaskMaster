@@ -13,6 +13,7 @@ export default function initPage(list) {
     _initDashBottom();
     _initAboveContent();
     _defaultListeners(list);
+    _startingMessage();
 }
 
 function _defaultListeners(listManager) {
@@ -27,6 +28,27 @@ function _defaultListeners(listManager) {
         newItemModal.addLists(listManager.getList());
         newItemModal.show()
     });
+}
+
+function _startingMessage() {
+    const content = document.getElementById("content");
+
+    const div = document.createElement("div");
+    div.classList.add("welcome-msg-bg");
+
+    const title = document.createElement("h1");
+    title.textContent = "Welcome to TaskMaster!"
+
+    const subtitle = document.createElement("p");
+    subtitle.textContent = "The BEST To-do app Available!"
+
+    const desc = document.createElement("p");
+    desc.textContent = "To get Started, Add a Task in the Top Right!";
+
+    div.appendChild(title);
+    div.appendChild(subtitle);
+    div.appendChild(desc);
+    content.appendChild(div);
 }
 
 function _addStartingLists(list) {
