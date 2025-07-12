@@ -33,12 +33,45 @@
                 <h1 id="add-list-h1-title">Add List</h1>
                 <div class="add-list-div">
                     <p id="add-list-title">Name:</p>
-                    <input type="text" id="list-name-input" maxlength="80">
+                    <input type="text" id="list-name-input" maxlength="60">
                 </div>
             </label>
             <div id="add-list-btns">
                 <button type="submit" id="add-list-submit-btn">Add</button>
                 <button type="button" id="add-list-close-btn">Close</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="add-item-modal">
+        <form action="" method="post" id="add-item-form">
+            <div class="title-item-div">
+                <h1>ADD ITEM</h1>
+                <button id="flag-btn" class="flag-false" type="button"></button>
+            </div>
+            <div class="item-information">
+                <label for="input-item-name">Name*:
+                    <input type="text" id="input-item-name" required>
+                </label>
+                <label for="input-item-date">Due Date:
+                    <input type="date" id="input-item-date" required>
+                </label>
+                <label for="input-item-desc">
+                    <textarea name="input-item-desc" id="input-item-desc" placeholder="Desc"></textarea>
+                </label>
+                <label for="input-item-priority">Priority:
+                    <select name="input-item-priority" id="input-item-priority" required>
+                        <option value="" selected>Select Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </label>
+                <label for="input-item-list">List:
+                    <select name="input-item-list" id="input-item-list" required>
+                </label>
+                </select>
+                <button type="submit">Add</button>
             </div>
         </form>
     </dialog>

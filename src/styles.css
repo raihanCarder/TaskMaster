@@ -370,10 +370,69 @@ body {
 
 .ellipsis {
     white-space: nowrap;
-    /* Prevents text from wrapping to the next line */
     overflow: hidden;
-    /* Hides anything that overflows the container */
     text-overflow: ellipsis;
-    /* Adds the "..." */
+    max-width: 100px;
+}
+
+/* Add item Modal */
+
+#add-item-modal {
+    width: 20%;
+    max-width: 500px;
+    border-radius: 10px;
+    border: none;
+}
+
+#add-item-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+
+    padding: 5px;
+}
+
+.title-item-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#flag-btn {
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: inherit;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.flag-true {
+    background-image: url("images/flagged.svg");
+}
+
+.flag-false {
+    background-image: url("images/flagged-outline.svg");
+}
+
+#flag-btn:hover {
+    transform: scale(1.05);
+}
+
+.item-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#input-item-list {
     max-width: 100px;
 }

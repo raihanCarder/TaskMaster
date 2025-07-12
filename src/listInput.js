@@ -1,4 +1,4 @@
-export default function listInput(submitFunc) {
+export default function listModal(submitFunc) {
     const modal = document.getElementById("add-list-modal");
     const form = document.getElementById("add-list-form");
     const listName = document.getElementById("list-name-input");
