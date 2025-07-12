@@ -50,28 +50,38 @@
                 <button id="flag-btn" class="flag-false" type="button"></button>
             </div>
             <div class="item-information">
-                <label for="input-item-name">Name*:
-                    <input type="text" id="input-item-name" required>
-                </label>
-                <label for="input-item-date">Due Date:
-                    <input type="date" id="input-item-date" required>
-                </label>
-                <label for="input-item-desc">
+                <div class="upper-information">
+                    <label for="input-item-name" id="label-item-name">
+                        <p>Name*:</p>
+                        <input type="text" id="input-item-name" maxlength="60" placeholder="Name Here" required>
+                    </label>
+                    <label for="input-item-date" id="label-item-date">
+                        <p>Date*:</p>
+                        <input type="date" id="input-item-date" required>
+                    </label>
+                </div>
+                <label for="input-item-desc" id="label-input-desc">Desc:
                     <textarea name="input-item-desc" id="input-item-desc" placeholder="Desc"></textarea>
                 </label>
-                <label for="input-item-priority">Priority:
-                    <select name="input-item-priority" id="input-item-priority" required>
-                        <option value="" selected>Select Priority</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </label>
-                <label for="input-item-list">List:
-                    <select name="input-item-list" id="input-item-list" required>
-                </label>
-                </select>
-                <button type="submit">Add</button>
+                <div class="lower-information">
+                    <label for="input-item-priority" id="label-item-priority">
+                        <p>Priority:</p>
+                        <select name="input-item-priority" id="input-item-priority" required>
+                            <option value="" selected>Select Priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </label>
+                    <label for="input-item-list" id="label-item-list">
+                        <p>List:</p>
+                        <select name="input-item-list" id="input-item-list" required></select>
+                    </label>
+                </div>
+                <div class="modal-item-btns">
+                    <button type="submit" id="modal-add-item-btn">Add</button>
+                    <button type="button" id="modal-cancel-item-btn">Cancel</button>
+                </div>
             </div>
         </form>
     </dialog>

@@ -4,6 +4,7 @@ export default function itemModal() {
     const nameInput = document.getElementById("input-item-name");
     const inputListSelection = document.getElementById("input-item-list");
     const flagBtn = document.getElementById("flag-btn");
+    const cancelBtn = document.getElementById("modal-cancel-item-btn");
 
     let isFlagged = false;
 
@@ -11,6 +12,7 @@ export default function itemModal() {
     const close = () => modal.close();
 
     flagBtn.addEventListener("click", _flagClicked);
+    cancelBtn.addEventListener("click", _cancelClick);
 
     form.addEventListener("submit", (e) => _submitInfo(e));
 
@@ -56,6 +58,11 @@ export default function itemModal() {
 
     function _clearLists() {
         inputListSelection.textContent = "";
+    }
+
+    function _cancelClick() {
+        form.reset();
+        close();
     }
 
     return { show, addLists }
