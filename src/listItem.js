@@ -4,6 +4,7 @@ export default function addList(inputName, inputColor = getRandomColor()) {
     const items = [];
     const name = inputName;
     const color = inputColor;
+    const id = crypto.randomUUID();
 
     function getName() {
         return name;
@@ -11,6 +12,10 @@ export default function addList(inputName, inputColor = getRandomColor()) {
 
     function getColor() {
         return color;
+    }
+
+    function getId() {
+        return id;
     }
 
     function addToList(item) {
@@ -32,5 +37,5 @@ export default function addList(inputName, inputColor = getRandomColor()) {
         return items.length;
     }
 
-    return { getName, getColor, addToList, removeFromList, listLength }
+    return { getName, getColor, addToList, removeFromList, listLength, getId }
 }
