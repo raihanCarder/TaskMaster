@@ -7,21 +7,21 @@ import plusIcon from "./images/plus.svg";
 import listModal from "./listInput";
 import itemModal from "./TodoInput";
 
-export default function initPage(list) {
+export default function initPage(list, itemManager) {
     _addStartingLists(list);
     _initDashListUI();
     _initDashBottom();
     _initAboveContent();
-    _defaultListeners(list);
+    _defaultListeners(list, itemManager);
     _startingMessage();
 }
 
-function _defaultListeners(listManager) {
+function _defaultListeners(listManager, itemManager) {
     const addListBtn = document.getElementById("add-list-btn");
     const addItemBtn = document.getElementById("add-item-btn");
 
     const newListModal = listModal(listManager.addNewList);
-    const newItemModal = itemModal();
+    const newItemModal = itemModal(itemManager.addNewItem);
 
     addListBtn.addEventListener("click", () => newListModal.show());
     addItemBtn.addEventListener("click", () => {

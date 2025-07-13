@@ -9,7 +9,6 @@ export default function createListManager() {
     const lists = [];
 
     function addNewList(name, color = "", image = listIcon) {
-
         const tempList = color === "" ? addList(name) : addList(name, color);
         lists.push(tempList);
 
@@ -19,8 +18,17 @@ export default function createListManager() {
         _addToDom(lists[lists.length - 1], image);
     }
 
+    function findList(id) {
+        const index = lists.findIndex((list) => list.getId() === id);
+        return index;
+    }
+
     function getList() {
         return lists;
+    }
+
+    function getListWithIndex(index) {
+        return lists[index];
     }
 
     function _addToDom(obj, image = listIcon) {
@@ -78,11 +86,13 @@ export default function createListManager() {
         divTitle.appendChild(title);
         divTitle.appendChild(circle);
         content.appendChild(divTitle);
+
+        // Load Tasks here
     }
 
     function _clearContent() {
         content.textContent = "";
     }
 
-    return { getList, addNewList }
+    return { getList, addNewList, getListWithIndex, findList }
 }

@@ -1,10 +1,15 @@
-export default function itemModal() {
+export default function itemModal(submitFunc) {
     const modal = document.getElementById("add-item-modal");
     const form = document.getElementById("add-item-form");
-    const nameInput = document.getElementById("input-item-name");
     const inputListSelection = document.getElementById("input-item-list");
     const flagBtn = document.getElementById("flag-btn");
     const cancelBtn = document.getElementById("modal-cancel-item-btn");
+
+    const nameInput = document.getElementById("input-item-name");
+    const dateInput = document.getElementById("input-item-date");
+    const descInput = document.getElementById("input-item-desc");
+    const priorityInput = document.getElementById("input-item-priority");
+    const listInput = document.getElementById("input-item-list");
 
     let isFlagged = false;
 
@@ -37,8 +42,8 @@ export default function itemModal() {
     function _submitInfo(e) {
         e.preventDefault();
 
-        // Submit to sum function
-        // make editing variable that will call submit if not editing and then just edit if editing true
+        submitFunc(nameInput.value, dateInput.value, descInput.value, priorityInput.value, isFlagged, listInput.value);
+
         close();
 
         if (isFlagged) {
