@@ -1,5 +1,6 @@
 import addItem from "./TodoItem";
 import { format } from 'date-fns';
+import loadContent from "./contentUI";
 
 export default function createItemManager(lists) {
     function addNewItem(name, date, desc, priority, flagged, list) {
@@ -19,7 +20,7 @@ export default function createItemManager(lists) {
             lists.getListWithIndex(1).addToList(tempItem);
         }
 
-        // if today add to list
+        // if today add to today list
 
         if (today === date) {
             lists.getListWithIndex(2).addToList(tempItem);
@@ -30,6 +31,13 @@ export default function createItemManager(lists) {
         if (index !== 0) {
             lists.getList()[index].addToList(tempItem);
         }
+
+        // Updates Dom if current list is list getting new task
+
+        if (lists.getCurrentListId() === list) {
+            loadContent(list, lists.getList());
+        }
     }
+
     return { addNewItem }
 }

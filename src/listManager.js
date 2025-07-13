@@ -1,19 +1,16 @@
 import addList from "./listItem";
-
+import loadContent from "./contentUI";
 import listIcon from "./images/list-icon.svg"
 
 export default function createListManager() {
     const dashboardList = document.getElementById("dashboard-lists");
-    const content = document.getElementById("content");
 
     const lists = [];
+    let currentListId = "";
 
     function addNewList(name, color = "", image = listIcon) {
         const tempList = color === "" ? addList(name) : addList(name, color);
         lists.push(tempList);
-
-        // TESTING
-        console.log(lists.map((list) => list.getName()));
 
         _addToDom(lists[lists.length - 1], image);
     }
@@ -31,9 +28,14 @@ export default function createListManager() {
         return lists[index];
     }
 
+    function getCurrentListId() {
+        return currentListId;
+    }
+
     function _addToDom(obj, image = listIcon) {
         const id = obj.getId();
         const newListBtn = document.createElement("button");
+
         newListBtn.classList.add("new-list-item-btn");
         newListBtn.id = `btn-${id}`;
 
@@ -55,44 +57,12 @@ export default function createListManager() {
         newListBtn.appendChild(text);
         dashboardList.appendChild(newListBtn);
 
-        newListBtn.addEventListener("click", (e) => loadContent(e));
+        newListBtn.addEventListener("click", (e) => {
+            const id = e.currentTarget.id.substring(4);
+            currentListId = id;
+            loadContent(id, lists);
+        });
     }
 
-    function loadContent(e) {
-        _clearContent();
-
-        const id = e.currentTarget.id.substring(4);
-        const findIndex = lists.findIndex((obj) => id === obj.getId());
-        const currObj = lists[findIndex];
-
-        const divTitle = document.createElement("div");
-        divTitle.classList.add("content-title-div");
-        divTitle.style.borderBottom = `1px solid ${currObj.getColor()}`;
-
-        const title = document.createElement("h3");
-        title.id = "topic-title";
-        title.textContent = currObj.getName();
-        title.style.color = currObj.getColor();
-
-        const circle = document.createElement("div");
-        circle.classList.add("circle-content-icon-outline");
-        circle.style.backgroundColor = currObj.getColor();
-
-        const circleText = document.createElement("p");
-        circleText.classList.add("number-items-p");
-        circleText.textContent = currObj.getLength();
-
-        circle.appendChild(circleText);
-        divTitle.appendChild(title);
-        divTitle.appendChild(circle);
-        content.appendChild(divTitle);
-
-        // Load Tasks here
-    }
-
-    function _clearContent() {
-        content.textContent = "";
-    }
-
-    return { getList, addNewList, getListWithIndex, findList }
+    return { getList, addNewList, getListWithIndex, findList, getCurrentListId }
 }
