@@ -56,9 +56,8 @@ function addTasksToDom(list, content) {
         itemName.classList.add("item-name-p");
         itemName.id = `name-${item.getId()}`
 
-        const itemDate =
 
-            itemDiv.appendChild(completeBtn);
+        itemDiv.appendChild(completeBtn);
         itemDiv.appendChild(itemName);
         itemsDiv.appendChild(itemDiv);
 
