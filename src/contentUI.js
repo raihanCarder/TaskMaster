@@ -106,11 +106,7 @@ function addTasksToDom(list, allLists, content) {
 
         completeBtn.addEventListener("click", (e) => _completeBtnClick(item, e, list.getColor()));
         deleteBtn.addEventListener("click", (e) => _deleteBtnClick(e, item, list, allLists));
-        editBtn.addEventListener("click", (e) => {
-            const editModal = itemModal(editInfo, "Edit");
-            editModal.addLists(allLists);
-            editModal.show();
-        });
+        editBtn.addEventListener("click", (e) => { });
     }
 
     content.appendChild(itemsDiv)

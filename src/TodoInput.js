@@ -1,4 +1,4 @@
-export default function itemModal(submitFunc, mode = "Add") {
+export default function itemModal(submitFunc) {
     const modal = document.getElementById("add-item-modal");
     const form = document.getElementById("add-item-form");
     const inputListSelection = document.getElementById("input-item-list");
@@ -19,16 +19,7 @@ export default function itemModal(submitFunc, mode = "Add") {
     flagBtn.addEventListener("click", _flagClicked);
     cancelBtn.addEventListener("click", _cancelClick);
 
-    form.addEventListener("submit", (e) => modeSelector(e));
-
-    function modeSelector(e) {
-        if (mode === "Add") {
-            _submitInfo(e);
-        }
-        else {
-            _changeInfo(e);
-        }
-    }
+    form.addEventListener("submit", (e) => _submitInfo(e));
 
     _preventsEsc(modal);
 
@@ -38,10 +29,6 @@ export default function itemModal(submitFunc, mode = "Add") {
                 e.preventDefault();
             }
         });
-    }
-
-    function _changeInfo(e) {
-        submitFunc(nameInput.value, dateInput.value, descInput.value, priorityInput.value, isFlagged, listInput.value);
     }
 
     function addLists(list) {
