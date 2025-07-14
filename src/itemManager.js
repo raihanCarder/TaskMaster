@@ -28,13 +28,23 @@ export default function createItemManager(lists) {
 
         // adds to list if not all list
 
-        if (index !== 0) {
+        if (index !== 0 && index !== 1 && index !== 2) {
             lists.getList()[index].addToList(tempItem);
         }
 
         // Updates Dom if current list is list getting new task
 
-        if (lists.getCurrentListId() === list) {
+        if (lists.getCurrentListId() === lists.getListWithIndex(0).getId()) {
+            loadContent(lists.getListWithIndex(0).getId(), lists.getList());
+        }
+        else if (tempItem.flagged && lists.getCurrentListId() === lists.getListWithIndex(1).getId()) {
+            loadContent(lists.getListWithIndex(1).getId(), lists.getList());
+        }
+        else if (today === date && lists.getCurrentListId() === lists.getListWithIndex(2).getId()) {
+            loadContent(lists.getListWithIndex(2).getId(), lists.getList());
+
+        }
+        else if (lists.getCurrentListId() === list) {
             loadContent(list, lists.getList());
         }
     }

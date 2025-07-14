@@ -50,6 +50,12 @@ function addTasksToDom(list, allLists, content) {
         itemDiv.classList.add("item");
         itemDiv.id = `item-${item.getId()}`;
 
+        const itemDivUpper = document.createElement("div");
+        itemDivUpper.classList.add("item-upper");
+
+        const itemDivLower = document.createElement("div");
+        itemDivLower.classList.add("item-lower");
+
         const completeBtn = document.createElement("button");
         completeBtn.classList.add("todo-btn");
 
@@ -63,15 +69,33 @@ function addTasksToDom(list, allLists, content) {
         itemDate.textContent = item.getDate();
         itemDate.classList.add("item-text-styling");
 
-        const deleteBtn = document.createElement("button")
+        const itemPriority = document.createElement("p");
+        itemPriority.textContent = item.getPriority();
+        itemPriority.classList.add("item-priority");
+        itemPriority.style.border = `2px solid black`;
+
+        _setPriorityColor(itemPriority, item.getPriority());
+
+        const deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete-btn");
         deleteBtn.id = `del-btn-${item.getId()}`;
         deleteBtn.type = "button";
 
-        itemDiv.appendChild(completeBtn);
-        itemDiv.appendChild(itemName);
-        itemDiv.appendChild(itemDate);
-        itemDiv.appendChild(deleteBtn);
+        const editBtn = document.createElement("button");
+        editBtn.id = `edit-btn-${item.getId()}`;
+        editBtn.classList.add("item-edit-btn");
+        editBtn.type = "button";
+
+        itemDivUpper.appendChild(completeBtn);
+        itemDivUpper.appendChild(itemName);
+        itemDivLower.appendChild(itemPriority);
+        itemDivLower.appendChild(itemDate);
+        itemDivLower.appendChild(editBtn);
+        itemDivLower.appendChild(deleteBtn);
+
+        itemDiv.appendChild(itemDivUpper);
+        itemDiv.appendChild(itemDivLower);
+
         itemsDiv.appendChild(itemDiv);
 
         if (item.isComplete) {
@@ -79,18 +103,34 @@ function addTasksToDom(list, allLists, content) {
             itemName.style.textDecoration = "line-through";
         }
 
-        completeBtn.addEventListener("click", (e) => completeBtnClick(item, e, list.getColor()));
-        deleteBtn.addEventListener("click", (e) => deleteBtnClick(e, item, list, allLists));
+        completeBtn.addEventListener("click", (e) => _completeBtnClick(item, e, list.getColor()));
+        deleteBtn.addEventListener("click", (e) => _deleteBtnClick(e, item, list, allLists));
     }
 
     content.appendChild(itemsDiv)
 
 }
 
-function deleteBtnClick(e, item, currList, allList) {
+function _setPriorityColor(element, priority) {
+    switch (priority) {
+        case 'low':
+            element.style.backgroundColor = '#4CAF50';
+            break;
+        case 'medium':
+            element.style.backgroundColor = '#FF9800';
+            break;
+        case 'high':
+            element.style.backgroundColor = '#F44336';
+            break;
+        default:
+            element.style.backgroundColor = 'gray';
+    }
+}
+
+function _deleteBtnClick(e, item, currList, allList) {
     // Curr list is list on display
 
-    const id = e.target.id.substring(8);
+    const id = e.currentTarget.id.substring(8);
     const targetDiv = document.getElementById(`item-${id}`);
     const listAmountText = document.getElementById("number-items-p");
     const today = format(new Date(), 'yyyy-MM-dd');
@@ -135,8 +175,8 @@ function deleteBtnClick(e, item, currList, allList) {
 
 }
 
-function completeBtnClick(item, e, color) {
-    const completeBtn = e.target;
+function _completeBtnClick(item, e, color) {
+    const completeBtn = e.currentTarget;
 
     const getText = document.getElementById(`name-${item.getId()}`)
 

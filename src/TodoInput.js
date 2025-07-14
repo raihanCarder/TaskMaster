@@ -21,6 +21,16 @@ export default function itemModal(submitFunc) {
 
     form.addEventListener("submit", (e) => _submitInfo(e));
 
+    _preventsEsc(modal);
+
+    function _preventsEsc(dialogEl) {
+        dialogEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+            }
+        });
+    }
+
     function addLists(list) {
         _clearLists();
 
