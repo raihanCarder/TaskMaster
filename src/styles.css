@@ -194,7 +194,6 @@ body {
 }
 
 .icon {
-    /* background-image: url("images/list-icon.svg"); */
     width: 1.8rem;
     height: 1.8rem;
     background-size: cover;
@@ -605,13 +604,17 @@ body {
 .item {
     background-color: #DCDCDC;
     width: 100%;
-    font-size: 1.3rem;
     padding: 0.2rem;
     border-radius: 10px;
 
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.item-text-styling {
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .item-name-p {
@@ -628,4 +631,20 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.delete-btn {
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: inherit;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    background-image: url("./images/delete.svg");
+}
+
+.delete-btn:hover {
+    transform: scale(1.05);
 }

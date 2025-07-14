@@ -22,5 +22,9 @@ export default function addItem(name, date, desc = "", priority, flagged, list) 
         return list;
     }
 
-    return { getName, date, getDesc, getPriority, flagged, getList, getId, isComplete }
+    function getDate() {
+        return date;
+    }
+
+    return { getName, getDate, getDesc, getPriority, flagged, getList, getId, isComplete }
 }

@@ -27,8 +27,9 @@ export default function addList(inputName, inputColor = getRandomColor()) {
     }
 
     function removeFromList(item) {
-        const id = item.id;
-        const index = items.findIndex((item) => item.id === id);
+        const id = item.getId();
+        const index = items.findIndex((item) => item.getId() === id);
+
         if (index !== -1) {
             items.splice(index, 1);
         }
