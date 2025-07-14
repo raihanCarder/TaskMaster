@@ -80,6 +80,49 @@
             </div>
         </form>
     </dialog>
+
+    <dialog id="edit-item-modal">
+        <form action="" method="post" id="edit-item-form">
+            <div class="title-item-div">
+                <h1>EDIT ITEM</h1>
+                <button id="edit-flag-btn" class="flag-false" type="button"></button>
+            </div>
+            <div class="item-information">
+                <div class="upper-information">
+                    <label for="edit-input-item-name" id="edit-label-item-name">
+                        <p>Name*:</p>
+                        <input type="text" id="edit-input-item-name" maxlength="60" placeholder="Name Here" required>
+                    </label>
+                    <label for="edit-input-item-date" id="edit-label-item-date">
+                        <p>Date*:</p>
+                        <input type="date" id="edit-input-item-date" required>
+                    </label>
+                </div>
+                <label for="edit-input-item-desc" id="edit-label-input-desc">Desc:
+                    <textarea name="edit-input-item-desc" id="edit-input-item-desc" placeholder="Desc"></textarea>
+                </label>
+                <div class="lower-information">
+                    <label for="edit-input-item-priority" id="edit-label-item-priority">
+                        <p>Priority*:</p>
+                        <select name="edit-input-item-priority" id="edit-input-item-priority" required>
+                            <option value="" selected>Select Priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </label>
+                    <label for="edit-input-item-list" id="edit-label-item-list">
+                        <p>List*:</p>
+                        <select name="edit-input-item-list" id="edit-input-item-list" required></select>
+                    </label>
+                </div>
+                <div class="modal-item-btns">
+                    <button type="submit" id="edit-modal-add-item-btn">Make Changes</button>
+                    <button type="button" id="edit-modal-cancel-item-btn">Exit</button>
+                </div>
+            </div>
+        </form>
+    </dialog>
 </body>
 
 </html>

@@ -1,5 +1,9 @@
 import { format } from 'date-fns';
 import itemModal from "./TodoInput";
+import editModal from './editModal';
+import editItem from './editItem';
+
+const edit = editModal(editItem);
 
 export default function loadContent(id, lists) {
     // lists is the actual list of lists not the list Manager
@@ -106,14 +110,16 @@ function addTasksToDom(list, allLists, content) {
 
         completeBtn.addEventListener("click", (e) => _completeBtnClick(item, e, list.getColor()));
         deleteBtn.addEventListener("click", (e) => _deleteBtnClick(e, item, list, allLists));
-        editBtn.addEventListener("click", (e) => { });
+        editBtn.addEventListener("click", (e) => {
+            const id = e.currentTarget.id.substring(9);
+
+            edit.addLists(allLists);
+            edit.fillModal(item);
+            edit.show();
+        });
     }
 
     content.appendChild(itemsDiv)
-
-}
-
-function editInfo() {
 
 }
 

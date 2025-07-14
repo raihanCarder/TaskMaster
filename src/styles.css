@@ -385,7 +385,8 @@ body {
 
 /* Add item Modal */
 
-#add-item-modal {
+#add-item-modal,
+#edit-item-modal {
     width: 35%;
     max-width: 800px;
     min-width: 500px;
@@ -393,7 +394,8 @@ body {
     border: none;
 }
 
-#add-item-form {
+#add-item-form,
+#edit-item-form {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -412,7 +414,8 @@ body {
     width: 100%;
 }
 
-#flag-btn {
+#flag-btn,
+#edit-flag-btn {
     border: none;
     background-repeat: no-repeat;
     background-size: cover;
@@ -431,7 +434,8 @@ body {
     background-image: url("images/flagged-outline.svg");
 }
 
-#flag-btn:hover {
+#flag-btn:hover,
+#edit-flag-btn:hover {
     transform: scale(1.1);
 }
 
@@ -443,12 +447,15 @@ body {
     gap: 10px;
 }
 
-#input-item-list {
+#input-item-list,
+#edit-input-item-list {
     max-width: 100%;
 }
 
 #input-item-name,
-#input-item-date {
+#input-item-date,
+#edit-input-item-name,
+#edit-input-item-date {
     padding: 3px;
     font-size: 0.8rem;
     font-family: 'Poppins', sans-serif;
@@ -476,7 +483,10 @@ body {
 
 #label-item-name,
 #label-item-date,
-#label-input-desc {
+#label-input-desc,
+#edit-label-item-name,
+#edit-label-item-date,
+#edit-label-input-desc {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -486,7 +496,8 @@ body {
     width: 100%;
 }
 
-#input-item-desc {
+#input-item-desc,
+#edit-input-item-desc {
     width: 100%;
     padding: 5px;
     background-color: var(--modal-item-input-bg-color);
@@ -506,7 +517,9 @@ body {
 }
 
 #label-item-priority,
-#label-item-list {
+#label-item-list,
+#edit-label-item-priority,
+#edit-label-item-list {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -516,7 +529,9 @@ body {
 }
 
 #input-item-priority,
-#input-item-list {
+#input-item-list,
+#edit-input-item-priority,
+#edit-input-item-list {
     width: 100%;
     padding: 3px;
     font-weight: bold;
@@ -526,7 +541,9 @@ body {
 }
 
 #modal-add-item-btn,
-#modal-cancel-item-btn {
+#modal-cancel-item-btn,
+#edit-modal-add-item-btn,
+#edit-modal-cancel-item-btn {
     width: 100%;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
@@ -534,20 +551,24 @@ body {
     border-radius: 10px;
 }
 
-#modal-add-item-btn {
+#modal-add-item-btn,
+#edit-modal-add-item-btn {
     background-color: var(--add-btn-bg);
 }
 
-#modal-add-item-btn:hover {
+#modal-add-item-btn:hover,
+#edit-modal-add-item-btn:hover {
     background-color: var(--add-btn-hover);
     cursor: pointer
 }
 
-#modal-cancel-item-btn {
+#modal-cancel-item-btn,
+#edit-modal-cancel-item-btn {
     background-color: var(--cancel-btn-bg);
 }
 
-#modal-cancel-item-btn:hover {
+#modal-cancel-item-btn:hover,
+#edit-modal-cancel-item-btn:hover {
     background-color: var(--cancel-btn-hover);
     cursor: pointer;
 }
