@@ -587,3 +587,45 @@ body {
 }
 
 /* ITEMS IN CONTENT SECTION*/
+
+.all-items-div {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2rem;
+
+    overflow-y: auto;
+}
+
+.item {
+    background-color: #DCDCDC;
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 0.2rem;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.item-name-p {
+    max-width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.todo-btn {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
