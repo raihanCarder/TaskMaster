@@ -64,5 +64,6 @@ export default function createListManager() {
         });
     }
 
+
     return { getList, addNewList, getListWithIndex, findList, getCurrentListId }
 }

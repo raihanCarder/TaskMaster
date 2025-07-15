@@ -45,6 +45,7 @@ export default function createItemManager(lists) {
         else if (lists.getCurrentListId() === list) {
             loadContent(list, lists.getList());
         }
+
     }
 
     return { addNewItem }
