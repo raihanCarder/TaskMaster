@@ -3,8 +3,6 @@ import { format } from 'date-fns';
 import loadContent from "./contentUI";
 
 export default function createItemManager(lists) {
-
-
     function addNewItem(name, date, desc, priority, flagged, list) {
         const today = format(new Date(), 'yyyy-MM-dd');
         console.log(today);
@@ -13,7 +11,6 @@ export default function createItemManager(lists) {
         const index = lists.findList(tempItem.getList());
 
         // add list to all lists
-
         lists.getListWithIndex(0).addToList(tempItem);
 
         // if flagged add to list flagged

@@ -112,9 +112,9 @@ function addTasksToDom(list, allLists, content) {
         deleteBtn.addEventListener("click", (e) => _deleteBtnClick(e, item, list, allLists));
         editBtn.addEventListener("click", (e) => {
             const id = e.currentTarget.id.substring(9);
-
             edit.addLists(allLists);
             edit.fillModal(item);
+            edit.setInfo(item, allLists, list.getId());
             edit.show();
         });
     }

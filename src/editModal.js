@@ -12,6 +12,9 @@ export default function editModal(submitFunc) {
     const listInput = document.getElementById("edit-input-item-list");
 
     let isFlagged = false;
+    let editingItemId = "";
+    let listofLists = "";
+    let currentDOMListId = "";
 
     const show = () => modal.showModal();
     const close = () => modal.close();
@@ -51,7 +54,8 @@ export default function editModal(submitFunc) {
     function _submitInfo(e) {
         e.preventDefault();
 
-        submitFunc(nameInput.value, dateInput.value, descInput.value, priorityInput.value, isFlagged);
+        submitFunc(editingItemId, nameInput.value, dateInput.value, descInput.value,
+            priorityInput.value, isFlagged, listofLists, currentDOMListId);
 
         close();
 
@@ -87,16 +91,22 @@ export default function editModal(submitFunc) {
         listInput.value = item.getList();
 
         if (item.flagged) {
+            isFlagged = true;
             flagBtn.classList.add("flag-true");
             flagBtn.classList.remove("flag-false");
         }
         else {
+            isFlagged = false;
             flagBtn.classList.add("flag-false");
             flagBtn.classList.remove("flag-true");
-
         }
-
     }
 
-    return { show, addLists, fillModal }
+    function setInfo(item, list, currlistId) {
+        editingItemId = item.getId();
+        listofLists = list;
+        currentDOMListId = currlistId;
+    }
+
+    return { show, addLists, fillModal, setInfo }
 }
