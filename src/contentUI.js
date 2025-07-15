@@ -45,6 +45,10 @@ export default function loadContent(id, lists) {
 function addTasksToDom(list, allLists, content) {
     const items = list.getItems();
 
+    if (items.length === 0) {
+        return;
+    }
+
     const itemsDiv = document.createElement("div");
     itemsDiv.classList.add("all-items-div")
 

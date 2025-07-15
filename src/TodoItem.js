@@ -1,4 +1,4 @@
-export default function addItem(nameParam, dateParam, descParam = "", priorityParam, flagged, list) {
+export default function addItem(nameParam, dateParam, descParam = "", priorityParam, flagged, listParam) {
     const id = crypto.randomUUID();
     const isComplete = false;
 
@@ -6,6 +6,7 @@ export default function addItem(nameParam, dateParam, descParam = "", priorityPa
     let desc = descParam;
     let priority = priorityParam;
     let date = dateParam;
+    let list = listParam;
 
     function getId() {
         return id;
@@ -39,6 +40,10 @@ export default function addItem(nameParam, dateParam, descParam = "", priorityPa
         return list;
     }
 
+    function setList(newInfo) {
+        list = newInfo
+    }
+
     function getDate() {
         return date;
     }
@@ -47,5 +52,9 @@ export default function addItem(nameParam, dateParam, descParam = "", priorityPa
         date = newInfo;
     }
 
-    return { getName, setName, getDate, setDate, getDesc, setDesc, getPriority, setPriority, flagged, getList, getId, isComplete }
+    function getFlagged() {
+        return flagged;
+    }
+
+    return { getName, setName, getDate, setDate, getDesc, setDesc, getPriority, setPriority, flagged, getList, getId, isComplete, getFlagged, setList }
 }

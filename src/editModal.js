@@ -46,7 +46,6 @@ export default function editModal(submitFunc) {
             const option = document.createElement("option");
             option.value = item.getId();
             option.textContent = item.getName();
-
             inputListSelection.appendChild(option);
         }
     }
@@ -55,7 +54,7 @@ export default function editModal(submitFunc) {
         e.preventDefault();
 
         submitFunc(editingItemId, nameInput.value, dateInput.value, descInput.value,
-            priorityInput.value, isFlagged, listofLists, currentDOMListId);
+            priorityInput.value, isFlagged, listInput.value, listofLists, currentDOMListId);
 
         close();
 
