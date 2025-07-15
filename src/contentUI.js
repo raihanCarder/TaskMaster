@@ -109,6 +109,7 @@ function addTasksToDom(list, allLists, content) {
         if (item.isComplete) {
             completeBtn.style.backgroundColor = list.getColor();
             itemName.style.textDecoration = "line-through";
+            itemDiv.style.backgroundColor = "#C0C0C0";
         }
 
         completeBtn.addEventListener("click", (e) => _completeBtnClick(item, e, list.getColor()));
@@ -181,15 +182,18 @@ function _completeBtnClick(item, e, color) {
     const completeBtn = e.currentTarget;
 
     const getText = document.getElementById(`name-${item.getId()}`)
+    const getBackground = document.getElementById(`item-${item.getId()}`);
 
     if (item.isComplete) {
         completeBtn.style.backgroundColor = "inherit";
         getText.style.textDecoration = "none";
         item.isComplete = false;
+        getBackground.style.backgroundColor = "#DCDCDC";
     }
     else {
         completeBtn.style.backgroundColor = color;
         getText.style.textDecoration = "line-through";
         item.isComplete = true;
+        getBackground.style.backgroundColor = "#C0C0C0";
     }
 }
