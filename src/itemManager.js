@@ -5,7 +5,6 @@ import loadContent from "./contentUI";
 export default function createItemManager(lists) {
     function addNewItem(name, date, desc, priority, flagged, list) {
         const today = format(new Date(), 'yyyy-MM-dd');
-        console.log(today);
 
         const tempItem = addItem(name, date, desc, priority, flagged, list);
         const index = lists.findList(tempItem.getList());

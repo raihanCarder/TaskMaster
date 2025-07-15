@@ -87,7 +87,6 @@ function _addOrRemoveFromCustomList(lists, itemId, selectListId) {
     const allList = lists[0];
 
     const listIndex = lists.findIndex((list) => list.getId() === selectListId);
-    console.log(listIndex);
     const list = lists[listIndex];
 
     let item;
@@ -96,18 +95,13 @@ function _addOrRemoveFromCustomList(lists, itemId, selectListId) {
 
     if (itemIndex === -1) {
         itemIndex = allList.getItems().findIndex((item) => item.getId() === itemId);
-        console.log(itemIndex);
         item = allList.getItems()[itemIndex];
     }
     else {
-        console.log(itemIndex);
-        console.log(list);
-
         item = list.getItems()[itemIndex];
     }
 
 
-    console.log(item);
     // case where item in old list and wants to move to same old list
 
     if (item.getList() === selectListId) {

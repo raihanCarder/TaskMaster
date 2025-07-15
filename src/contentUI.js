@@ -155,12 +155,6 @@ function _deleteBtnClick(e, item, currList, allList) {
     const index = allList.findIndex((list) => list.getId() === itemListId);
     const itemList = allList[index];
 
-    // testing
-    console.log("ALL List length: " + allList[0].getLength());
-    console.log("Flag List length: " + allList[1].getLength());
-    console.log("Today List length: " + allList[2].getLength());
-    console.log("List: " + itemList.getName() + " Item List length: " + itemList.getLength());
-
     // remove item from all
     allList[0].removeFromList(item);
 
@@ -182,13 +176,6 @@ function _deleteBtnClick(e, item, currList, allList) {
 
     targetDiv.remove();
     listAmountText.textContent = currList.getLength();
-
-    // testing
-    console.log("ALL List length After: " + allList[0].getLength());
-    console.log("Flag List length After: " + allList[1].getLength());
-    console.log("Today List length After: " + allList[2].getLength());
-    console.log("List: " + itemList.getName() + " Item List length After: " + itemList.getLength());
-
 }
 
 function _completeBtnClick(item, e, color) {
