@@ -1,6 +1,3 @@
-import inboxIcon from "./images/inbox.svg";
-import todayIcon from "./images/calendar-today.svg";
-import flagIcon from "./images/flag.svg";
 import circlePlusIcon from "./images/plus-circle.svg"
 import plusIcon from "./images/plus.svg";
 
@@ -8,7 +5,6 @@ import listModal from "./listInput";
 import itemModal from "./TodoInput";
 
 export default function initPage(list, itemManager) {
-    _addStartingLists(list);
     _initDashListUI();
     _initDashBottom();
     _initAboveContent();
@@ -49,12 +45,6 @@ function _startingMessage() {
     div.appendChild(subtitle);
     div.appendChild(desc);
     content.appendChild(div);
-}
-
-function _addStartingLists(list) {
-    list.addNewList("All", "lightblue", inboxIcon);
-    list.addNewList("Flagged", "orange", flagIcon);
-    list.addNewList("Today", "lightcoral", todayIcon);
 }
 
 function _initDashListUI() {

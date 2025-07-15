@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import itemModal from "./TodoInput";
 import editModal from './editModal';
 import editItem from './editItem';
 
