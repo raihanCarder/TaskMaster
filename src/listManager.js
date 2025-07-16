@@ -99,25 +99,29 @@ export default function createListManager() {
 
     function load() {
         const raw = localStorage.getItem("todoData");
-
         if (!raw) return;
 
         const savedLists = JSON.parse(raw);
+        const itemPool = new Map();
 
         savedLists.forEach(savedList => {
-
             const listObj = addNewList(savedList.name, savedList.color);
 
             savedList.items.forEach(savedItem => {
-                const itemObj = addItem(
-                    savedItem.name,
-                    savedItem.date,
-                    savedItem.desc,
-                    savedItem.priority,
-                    savedItem.flagged,
-                    listObj.getId(),
-                    savedItem.isComplete
-                );
+                let itemObj = itemPool.get(savedItem.id);
+
+                if (!itemObj) {
+                    itemObj = addItem(
+                        savedItem.name,
+                        savedItem.date,
+                        savedItem.desc,
+                        savedItem.priority,
+                        savedItem.flagged,
+                        listObj.getId(),
+                        savedItem.isComplete
+                    );
+                    itemPool.set(savedItem.id, itemObj);
+                }
 
                 listObj.addToList(itemObj);
             });
