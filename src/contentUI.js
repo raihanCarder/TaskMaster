@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import editModal from './editModal';
 import editItem from './editItem';
+import { lists as listManager } from './state';
 
 const edit = editModal(editItem);
 
@@ -115,7 +116,6 @@ function addTasksToDom(list, allLists, content) {
         completeBtn.addEventListener("click", (e) => _completeBtnClick(item, e, list.getColor()));
         deleteBtn.addEventListener("click", (e) => _deleteBtnClick(e, item, list, allLists));
         editBtn.addEventListener("click", (e) => {
-            const id = e.currentTarget.id.substring(9);
             edit.addLists(allLists);
             edit.fillModal(item);
             edit.setInfo(item, allLists, list.getId());
@@ -176,6 +176,7 @@ function _deleteBtnClick(e, item, currList, allList) {
 
     targetDiv.remove();
     listAmountText.textContent = currList.getLength();
+    listManager.save();
 }
 
 function _completeBtnClick(item, e, color) {
@@ -196,4 +197,6 @@ function _completeBtnClick(item, e, color) {
         item.isComplete = true;
         getBackground.style.backgroundColor = "#C0C0C0";
     }
+
+    listManager.save();
 }

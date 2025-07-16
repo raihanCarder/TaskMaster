@@ -1,12 +1,12 @@
-export default function addItem(nameParam, dateParam, descParam = "", priorityParam, flagged, listParam) {
+export default function addItem(nameParam, dateParam, descParam = "", priorityParam, flagged, listParam, isCompleteParam = false) {
     const id = crypto.randomUUID();
-    const isComplete = false;
 
     let name = nameParam;
     let desc = descParam;
     let priority = priorityParam;
     let date = dateParam;
     let list = listParam;
+    let isComplete = isCompleteParam;
 
     function getId() {
         return id;

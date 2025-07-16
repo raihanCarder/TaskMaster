@@ -1,14 +1,22 @@
 import "./styles.css";
-import initPage from "./initPage";
-import createListManager from "./listManager";
-import createItemManager from "./itemManager";
-import initStartingLists from "./initStartingLists";
+import initPage from "./initPage.js";
+import initStartingLists from "./initStartingLists.js";
+import { lists, items, initState } from "./state.js";
+import initDashListUI from "./initDashListUI.js";
 
 function logicApp() {
-    const lists = createListManager();
-    const items = createItemManager(lists);
+    initState();
 
-    initStartingLists(lists);
+    if (localStorage.getItem("todoData")) {
+        console.log("load data");
+        initDashListUI();
+        lists.load();
+    }
+    else {
+        console.log("No Data init Default");
+        initStartingLists(lists);
+        initDashListUI();
+    }
     initPage(lists, items);
 }
 

@@ -1,6 +1,7 @@
 import addList from "./listItem";
 import loadContent from "./contentUI";
 import listIcon from "./images/list-icon.svg"
+import addItem from "./TodoItem";
 
 export default function createListManager() {
     const dashboardList = document.getElementById("dashboard-lists");
@@ -13,7 +14,12 @@ export default function createListManager() {
         lists.push(tempList);
 
         _addToDom(lists[lists.length - 1], image);
+
+        save();
+
+        return tempList;
     }
+
 
     function findList(id) {
         const index = lists.findIndex((list) => list.getId() === id);
@@ -64,6 +70,59 @@ export default function createListManager() {
         });
     }
 
+    function _listToPlain(list) {
+        return {
+            id: list.getId(),
+            name: list.getName(),
+            color: list.getColor(),
+            items: list.getItems().map(_itemToPlain),
+        };
+    }
 
-    return { getList, addNewList, getListWithIndex, findList, getCurrentListId }
+    function _itemToPlain(item) {
+        return {
+            id: item.getId(),
+            name: item.getName(),
+            date: item.getDate(),
+            desc: item.getDesc(),
+            priority: item.getPriority(),
+            flagged: item.flagged,
+            list: item.getList(),
+            isComplete: item.isComplete
+        };
+    }
+
+    function save() {
+        const plain = lists.map(_listToPlain);
+        localStorage.setItem("todoData", JSON.stringify(plain));
+    }
+
+    function load() {
+        const raw = localStorage.getItem("todoData");
+
+        if (!raw) return;
+
+        const savedLists = JSON.parse(raw);
+
+        savedLists.forEach(savedList => {
+
+            const listObj = addNewList(savedList.name, savedList.color);
+
+            savedList.items.forEach(savedItem => {
+                const itemObj = addItem(
+                    savedItem.name,
+                    savedItem.date,
+                    savedItem.desc,
+                    savedItem.priority,
+                    savedItem.flagged,
+                    listObj.getId(),
+                    savedItem.isComplete
+                );
+
+                listObj.addToList(itemObj);
+            });
+        });
+    }
+
+    return { getList, addNewList, getListWithIndex, findList, getCurrentListId, save, load }
 }

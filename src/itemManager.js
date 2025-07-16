@@ -46,6 +46,7 @@ export default function createItemManager(lists) {
             loadContent(list, lists.getList());
         }
 
+        lists.save();
     }
 
     return { addNewItem }

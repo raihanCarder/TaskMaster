@@ -5,7 +5,6 @@ import listModal from "./listInput";
 import itemModal from "./TodoInput";
 
 export default function initPage(list, itemManager) {
-    _initDashListUI();
     _initDashBottom();
     _initAboveContent();
     _defaultListeners(list, itemManager);
@@ -45,14 +44,6 @@ function _startingMessage() {
     div.appendChild(subtitle);
     div.appendChild(desc);
     content.appendChild(div);
-}
-
-function _initDashListUI() {
-    const dashboardList = document.getElementById("dashboard-lists");
-    const listP = document.createElement("p");
-    listP.textContent = "My Lists:";
-
-    dashboardList.appendChild(listP);
 }
 
 function _initDashBottom() {

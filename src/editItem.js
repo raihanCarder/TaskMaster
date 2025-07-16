@@ -1,6 +1,6 @@
 import loadContent from "./contentUI";
 import { format } from 'date-fns';
-
+import { lists as listManager } from "./state.js";
 
 export default function editItem(id, name, date, desc, priority, isFlagged, selectList, lists, currentDOMListId) {
 
@@ -22,6 +22,7 @@ export default function editItem(id, name, date, desc, priority, isFlagged, sele
         }
     }
 
+    listManager.save();
     loadContent(currentDOMListId, lists);
 }
 
