@@ -1,4 +1,6 @@
 # To do App
+A lightweight, modular to‑do app with local‑storage persistence.
+
 This project I focused on making an intuitive to-do app that anyone can use with many features listed below! I focused on learning about modular design and the difficulty that comes with making larger scale projects. I've learnt that planning everything out first is the most effective way to create projects as when I was building i've realized the way I was doing some things wasn't the best available option and with more planning the code could've been cleaner and more readable.
 
 ## Features
