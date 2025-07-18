@@ -2,6 +2,9 @@ import addList from "./listItem";
 import loadContent from "./contentUI";
 import listIcon from "./images/list-icon.svg"
 import addItem from "./TodoItem";
+import inbox from "./images/inbox.svg";
+import flag from "./images/flag.svg";
+import today from "./images/calendar-today.svg";
 
 export default function createListManager() {
     const dashboardList = document.getElementById("dashboard-lists");
@@ -103,9 +106,27 @@ export default function createListManager() {
 
         const savedLists = JSON.parse(raw);
         const itemPool = new Map();
+        let listCounter = 0;
+        let img;
 
         savedLists.forEach(savedList => {
-            const listObj = addNewList(savedList.name, savedList.color);
+
+            if (listCounter===0){
+                img = inbox;
+            }
+            else if (listCounter === 1){
+                img = flag;
+            }
+            else if (listCounter === 2){
+                img = today;
+            }
+            else{
+                img = listIcon;
+            }
+
+            listCounter++;
+
+            const listObj = addNewList(savedList.name, savedList.color, img);
 
             savedList.items.forEach(savedItem => {
                 let itemObj = itemPool.get(savedItem.id);
