@@ -157,6 +157,7 @@ function _deleteBtnClick(e, item, currList, allList) {
 
     // remove item from all
     allList[0].removeFromList(item);
+    console.log("removed from all");
 
     // remove item from flagged if flagged
     if (item.flagged) {
@@ -170,12 +171,13 @@ function _deleteBtnClick(e, item, currList, allList) {
 
     //remove item from list if not in default lists 
 
-    if (itemList.getName() !== ("All" || "Today" || "Flagged")) {
+    if (itemList.getId() !== (allList[0].getId() || allList[1].getId() ||allList[2].getId())) {
         itemList.removeFromList(item);
     }
 
     targetDiv.remove();
     listAmountText.textContent = currList.getLength();
+
     listManager.save();
 }
 
