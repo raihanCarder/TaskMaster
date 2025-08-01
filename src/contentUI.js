@@ -1,204 +1,244 @@
-import { format } from 'date-fns';
-import editModal from './editModal';
-import editItem from './editItem';
-import { lists as listManager } from './state';
+import { format } from "date-fns";
+import editModal from "./editModal";
+import editItem from "./editItem";
+import { lists as listManager } from "./state";
 
 const edit = editModal(editItem);
 
 export default function loadContent(id, lists) {
-    // lists is the actual list of lists not the list Manager
+  // lists is the actual list of lists not the list Manager
 
-    const content = document.getElementById("content");
+  const content = document.getElementById("content");
 
-    content.textContent = "";
+  content.textContent = "";
 
-    const index = lists.findIndex((list) => list.getId() === id);
-    const currObj = lists[index]; // curr list
+  const index = lists.findIndex((list) => list.getId() === id);
+  const currObj = lists[index]; // curr list
 
-    const divTitle = document.createElement("div");
-    divTitle.classList.add("content-title-div");
-    divTitle.style.borderBottom = `1px solid ${currObj.getColor()}`;
+  const divTitle = document.createElement("div");
+  divTitle.classList.add("content-title-div");
+  divTitle.style.borderBottom = `1px solid ${currObj.getColor()}`;
 
-    const title = document.createElement("h3");
-    title.id = "topic-title";
-    title.textContent = currObj.getName();
-    title.style.color = currObj.getColor();
+  const title = document.createElement("h3");
+  title.id = "topic-title";
+  title.textContent = currObj.getName();
+  title.style.color = currObj.getColor();
 
-    const circle = document.createElement("div");
-    circle.classList.add("circle-content-icon-outline");
-    circle.style.backgroundColor = currObj.getColor();
+  const titleSection = document.createElement("div");
+  titleSection.classList.add("title-and-delete");
 
-    const circleText = document.createElement("p");
-    circleText.classList.add("number-items-p");
-    circleText.id = `number-items-p`;
-    circleText.dataset.currList = `${id}`;
-    circleText.textContent = currObj.getLength();
+  // cannot delete main lists
+  let deleteBtn;
+  if (index > 2) {
+    deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn-lists");
+    deleteBtn.id = `delete-list-${currObj.getId()}`;
 
-    circle.appendChild(circleText);
-    divTitle.appendChild(title);
-    divTitle.appendChild(circle);
-    content.appendChild(divTitle);
+    deleteBtn.addEventListener("click", (e) => deleteListOnClick(e));
+  }
 
-    addTasksToDom(currObj, lists, content);
+  const circle = document.createElement("div");
+  circle.classList.add("circle-content-icon-outline");
+  circle.style.backgroundColor = currObj.getColor();
+
+  const circleText = document.createElement("p");
+  circleText.classList.add("number-items-p");
+  circleText.id = `number-items-p`;
+  circleText.dataset.currList = `${id}`;
+  circleText.textContent = currObj.getLength();
+
+  circle.appendChild(circleText);
+  titleSection.appendChild(title);
+  if (index > 2) titleSection.appendChild(deleteBtn);
+  divTitle.appendChild(titleSection);
+  divTitle.appendChild(circle);
+  content.appendChild(divTitle);
+
+  addTasksToDom(currObj, lists, content);
+}
+
+function deleteListOnClick(e) {
+  const id = e.currentTarget.id.substring(12);
+  const grabBtnFromDom = document.getElementById(`btn-${id}`);
+
+  // find list then for each item change their list to all
+  const index = listManager.findList(id);
+  const tempList = listManager.getList()[index].getItems();
+
+  const allId = listManager.getList()[0].getId();
+
+  for (let item of tempList) {
+    item.setList(allId);
+  }
+
+  listManager.deleteList(id);
+  grabBtnFromDom.remove();
+  loadContent(listManager.getList()[0].getId(), listManager.getList());
+  listManager.save();
 }
 
 function addTasksToDom(list, allLists, content) {
-    const items = list.getItems();
+  const items = list.getItems();
 
-    if (items.length === 0) {
-        return;
+  if (items.length === 0) {
+    return;
+  }
+
+  const itemsDiv = document.createElement("div");
+  itemsDiv.classList.add("all-items-div");
+
+  for (let num in items) {
+    const item = items[num];
+
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("item");
+    itemDiv.id = `item-${item.getId()}`;
+
+    const itemDivUpper = document.createElement("div");
+    itemDivUpper.classList.add("item-upper");
+
+    const itemDivLower = document.createElement("div");
+    itemDivLower.classList.add("item-lower");
+
+    const completeBtn = document.createElement("button");
+    completeBtn.classList.add("todo-btn");
+
+    const itemName = document.createElement("p");
+    itemName.textContent = item.getName();
+    itemName.classList.add("item-name-p");
+    itemName.classList.add("item-text-styling");
+    itemName.id = `name-${item.getId()}`;
+
+    const itemDate = document.createElement("p");
+    itemDate.textContent = item.getDate();
+    itemDate.classList.add("item-text-styling");
+
+    const itemPriority = document.createElement("p");
+    itemPriority.textContent = item.getPriority();
+    itemPriority.classList.add("item-priority");
+    itemPriority.style.border = `2px solid black`;
+
+    _setPriorityColor(itemPriority, item.getPriority());
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.id = `del-btn-${item.getId()}`;
+    deleteBtn.type = "button";
+
+    const editBtn = document.createElement("button");
+    editBtn.id = `edit-btn-${item.getId()}`;
+    editBtn.classList.add("item-edit-btn");
+    editBtn.type = "button";
+
+    itemDivUpper.appendChild(completeBtn);
+    itemDivUpper.appendChild(itemName);
+    itemDivLower.appendChild(itemPriority);
+    itemDivLower.appendChild(itemDate);
+    itemDivLower.appendChild(editBtn);
+    itemDivLower.appendChild(deleteBtn);
+
+    itemDiv.appendChild(itemDivUpper);
+    itemDiv.appendChild(itemDivLower);
+
+    itemsDiv.appendChild(itemDiv);
+
+    if (item.isComplete) {
+      completeBtn.style.backgroundColor = list.getColor();
+      itemName.style.textDecoration = "line-through";
+      itemDiv.style.backgroundColor = "#C0C0C0";
     }
 
-    const itemsDiv = document.createElement("div");
-    itemsDiv.classList.add("all-items-div")
+    completeBtn.addEventListener("click", (e) =>
+      _completeBtnClick(item, e, list.getColor())
+    );
+    deleteBtn.addEventListener("click", (e) =>
+      _deleteBtnClick(e, item, list, allLists)
+    );
+    editBtn.addEventListener("click", (e) => {
+      edit.addLists(allLists);
+      edit.fillModal(item);
+      edit.setInfo(item, allLists, list.getId());
+      edit.show();
+    });
+  }
 
-    for (let num in items) {
-        const item = items[num];
-
-        const itemDiv = document.createElement("div");
-        itemDiv.classList.add("item");
-        itemDiv.id = `item-${item.getId()}`;
-
-        const itemDivUpper = document.createElement("div");
-        itemDivUpper.classList.add("item-upper");
-
-        const itemDivLower = document.createElement("div");
-        itemDivLower.classList.add("item-lower");
-
-        const completeBtn = document.createElement("button");
-        completeBtn.classList.add("todo-btn");
-
-        const itemName = document.createElement("p");
-        itemName.textContent = item.getName();
-        itemName.classList.add("item-name-p");
-        itemName.classList.add("item-text-styling");
-        itemName.id = `name-${item.getId()}`
-
-        const itemDate = document.createElement("p");
-        itemDate.textContent = item.getDate();
-        itemDate.classList.add("item-text-styling");
-
-        const itemPriority = document.createElement("p");
-        itemPriority.textContent = item.getPriority();
-        itemPriority.classList.add("item-priority");
-        itemPriority.style.border = `2px solid black`;
-
-        _setPriorityColor(itemPriority, item.getPriority());
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("delete-btn");
-        deleteBtn.id = `del-btn-${item.getId()}`;
-        deleteBtn.type = "button";
-
-        const editBtn = document.createElement("button");
-        editBtn.id = `edit-btn-${item.getId()}`;
-        editBtn.classList.add("item-edit-btn");
-        editBtn.type = "button";
-
-        itemDivUpper.appendChild(completeBtn);
-        itemDivUpper.appendChild(itemName);
-        itemDivLower.appendChild(itemPriority);
-        itemDivLower.appendChild(itemDate);
-        itemDivLower.appendChild(editBtn);
-        itemDivLower.appendChild(deleteBtn);
-
-        itemDiv.appendChild(itemDivUpper);
-        itemDiv.appendChild(itemDivLower);
-
-        itemsDiv.appendChild(itemDiv);
-
-        if (item.isComplete) {
-            completeBtn.style.backgroundColor = list.getColor();
-            itemName.style.textDecoration = "line-through";
-            itemDiv.style.backgroundColor = "#C0C0C0";
-        }
-
-        completeBtn.addEventListener("click", (e) => _completeBtnClick(item, e, list.getColor()));
-        deleteBtn.addEventListener("click", (e) => _deleteBtnClick(e, item, list, allLists));
-        editBtn.addEventListener("click", (e) => {
-            edit.addLists(allLists);
-            edit.fillModal(item);
-            edit.setInfo(item, allLists, list.getId());
-            edit.show();
-        });
-    }
-
-    content.appendChild(itemsDiv)
-
+  content.appendChild(itemsDiv);
 }
 
 function _setPriorityColor(element, priority) {
-    switch (priority) {
-        case 'low':
-            element.style.backgroundColor = '#4CAF50';
-            break;
-        case 'medium':
-            element.style.backgroundColor = '#FF9800';
-            break;
-        case 'high':
-            element.style.backgroundColor = '#F44336';
-            break;
-        default:
-            element.style.backgroundColor = 'gray';
-    }
+  switch (priority) {
+    case "low":
+      element.style.backgroundColor = "#4CAF50";
+      break;
+    case "medium":
+      element.style.backgroundColor = "#FF9800";
+      break;
+    case "high":
+      element.style.backgroundColor = "#F44336";
+      break;
+    default:
+      element.style.backgroundColor = "gray";
+  }
 }
 
 function _deleteBtnClick(e, item, currList, allList) {
-    // Curr list is list on display
+  // Curr list is list on display
 
-    const id = e.currentTarget.id.substring(8);
-    const targetDiv = document.getElementById(`item-${id}`);
-    const listAmountText = document.getElementById("number-items-p");
-    const today = format(new Date(), 'yyyy-MM-dd');
+  const id = e.currentTarget.id.substring(8);
+  const targetDiv = document.getElementById(`item-${id}`);
+  const listAmountText = document.getElementById("number-items-p");
+  const today = format(new Date(), "yyyy-MM-dd");
 
-    const itemListId = item.getList();
-    const index = allList.findIndex((list) => list.getId() === itemListId);
-    const itemList = allList[index];
+  const itemListId = item.getList();
+  const index = allList.findIndex((list) => list.getId() === itemListId);
+  const itemList = allList[index];
 
-    // remove item from all
-    allList[0].removeFromList(item);
-    console.log("removed from all");
+  // remove item from all
+  allList[0].removeFromList(item);
+  console.log("removed from all");
 
-    // remove item from flagged if flagged
-    if (item.flagged) {
-        allList[1].removeFromList(item);
-    }
+  // remove item from flagged if flagged
+  if (item.flagged) {
+    allList[1].removeFromList(item);
+  }
 
-    // remove item from today if today
-    if (item.getDate() === today) {
-        allList[2].removeFromList(item);
-    }
+  // remove item from today if today
+  if (item.getDate() === today) {
+    allList[2].removeFromList(item);
+  }
 
-    //remove item from list if not in default lists 
+  //remove item from list if not in default lists
 
-    if (itemList.getId() !== (allList[0].getId() || allList[1].getId() ||allList[2].getId())) {
-        itemList.removeFromList(item);
-    }
+  if (
+    itemList.getId() !==
+    (allList[0].getId() || allList[1].getId() || allList[2].getId())
+  ) {
+    itemList.removeFromList(item);
+  }
 
-    targetDiv.remove();
-    listAmountText.textContent = currList.getLength();
+  targetDiv.remove();
+  listAmountText.textContent = currList.getLength();
 
-    listManager.save();
+  listManager.save();
 }
 
 function _completeBtnClick(item, e, color) {
-    const completeBtn = e.currentTarget;
+  const completeBtn = e.currentTarget;
 
-    const getText = document.getElementById(`name-${item.getId()}`)
-    const getBackground = document.getElementById(`item-${item.getId()}`);
+  const getText = document.getElementById(`name-${item.getId()}`);
+  const getBackground = document.getElementById(`item-${item.getId()}`);
 
-    if (item.isComplete) {
-        completeBtn.style.backgroundColor = "inherit";
-        getText.style.textDecoration = "none";
-        item.isComplete = false;
-        getBackground.style.backgroundColor = "#DCDCDC";
-    }
-    else {
-        completeBtn.style.backgroundColor = color;
-        getText.style.textDecoration = "line-through";
-        item.isComplete = true;
-        getBackground.style.backgroundColor = "#C0C0C0";
-    }
+  if (item.isComplete) {
+    completeBtn.style.backgroundColor = "inherit";
+    getText.style.textDecoration = "none";
+    item.isComplete = false;
+    getBackground.style.backgroundColor = "#DCDCDC";
+  } else {
+    completeBtn.style.backgroundColor = color;
+    getText.style.textDecoration = "line-through";
+    item.isComplete = true;
+    getBackground.style.backgroundColor = "#C0C0C0";
+  }
 
-    listManager.save();
+  listManager.save();
 }
