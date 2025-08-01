@@ -1,4 +1,5 @@
 # To do App
+
 A lightweight, modular to‑do app with local‑storage persistence.
 
 This project I focused on making an intuitive to-do app that anyone can use with many features listed below! I focused on learning about modular design and the difficulty that comes with making larger scale projects. I've learnt that planning everything out first is the most effective way to create projects as when I was building i've realized the way I was doing some things wasn't the best available option and with more planning the code could've been cleaner and more readable.
@@ -6,8 +7,9 @@ This project I focused on making an intuitive to-do app that anyone can use with
 ## Features
 
 - Create Lists that store your Todo's
+- Delete lists when you no londer need them!
 - Add your Todo's to your projects with a bunch of info, great for your future self!
-- With localstorage your tasks and projects save! 
+- With localstorage your tasks and projects save!
 - Edit Todo's and change where their located and/or their information
 - Delete Unneeded Todo's to clean up your display!
 - Click on the Todo's to Complete them! Great Job!
@@ -22,8 +24,7 @@ This project I focused on making an intuitive to-do app that anyone can use with
 ![About Page Screenshot](./src/images/screenshot3.png)
 ![Some tasks included](./src/images/screenshot4.png)
 
-
-##  Prerequisites
+## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v14 or higher recommended)
 - npm (comes with Node)
@@ -38,11 +39,12 @@ This project I focused on making an intuitive to-do app that anyone can use with
 
 3. Install Dependencies with `npm install` in terminal.
 
-4. Build Project with `npm run build` in terminal. 
+4. Build Project with `npm run build` in terminal.
 
 5. Open dist/index.html in browser or preview with VS Live Server.
 
 ## Tech Stack
+
 - Javascript
 - HTML
 - CSS
@@ -50,5 +52,3 @@ This project I focused on making an intuitive to-do app that anyone can use with
 
 Created by Raihan Carder(https://github.com/raihanCarder)  
 Feel free to reach out!
-
-
