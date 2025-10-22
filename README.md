@@ -1,4 +1,4 @@
-# To do App
+# TaskMaster
 
 A lightweight, modular to‑do app with local‑storage persistence.
 
