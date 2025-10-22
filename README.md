@@ -15,7 +15,7 @@ This project I focused on making an intuitive to-do app that anyone can use with
 - Click on the Todo's to Complete them! Great Job!
 - Clean and Modern UI
 
-[Live Demo](https://raihancarder.github.io/to-do-app/)
+[Live Demo](https://raihancarder.github.io/TaskMaster/)
 
 ## Screenshots
 
@@ -32,7 +32,7 @@ This project I focused on making an intuitive to-do app that anyone can use with
 ## Installation
 
 1. Clone the repo  
-   `git clone https://github.com/raihanCarder/to-do-app.git`
+   `git clone https://raihancarder.github.io/TaskMaster/.git`
 
 2. Navigate to the folder  
    `cd to-do-app`
